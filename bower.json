@@ -1,0 +1,25 @@
+{
+	"name": "multi-download",
+	"description": "Download multiple files at once",
+	"license": "MIT",
+	"main": "multi-download.js",
+	"authors": [
+		{
+			"name": "Sindre Sorhus",
+			"email": "sindresorhus@gmail.com",
+			"url": "http://sindresorhus.com"
+		}
+	],
+	"keywords": [
+		"browser",
+		"download",
+		"multiple",
+		"parallel",
+		"files"
+	],
+	"ignore": [
+		"**/.*",
+		"component.json",
+		"package.json"
+	]
+}

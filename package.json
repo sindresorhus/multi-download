@@ -1,0 +1,23 @@
+{
+  "name": "multi-download",
+  "version": "0.0.0",
+  "description": "Download multiple files at once",
+  "license": "MIT",
+  "repository": "sindresorhus/multi-download",
+  "main": "multi-download.js",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "files": [
+    "multi-download.js"
+  ],
+  "keywords": [
+    "browser",
+    "download",
+    "multiple",
+    "parallel",
+    "files"
+  ]
+}
