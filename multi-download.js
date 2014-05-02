@@ -39,7 +39,6 @@
 
 		urls.forEach(function (url) {
 			var a = document.createElement('a');
-			console.log('yo');
 			a.download = '';
 			a.href = url;
 			// firefox doesn't support `a.click()`...
