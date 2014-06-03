@@ -64,7 +64,7 @@
 				download(url);	
 			} else {
 				// the download init has to be sequential for firefox if the urls are not on the same domain
-				setTimeout( download.bind( null, url ), 100 * (++delay));
+				setTimeout(download.bind(null, url), 100 * (++delay));
 			}
 		});
 	};
