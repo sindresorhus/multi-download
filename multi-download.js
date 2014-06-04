@@ -28,6 +28,11 @@
 		})();
 	}
 	
+	function isFirefox() {
+		// sad panda :(
+		return /Firefox\//i.test(navigator.userAgent);
+	}
+	
 	function sameDomain(url) {
 	  	// detect (protocol:)//
 		if (! /^([a-z]+:)?\/\//i.test(url)) {
@@ -60,11 +65,11 @@
 		var delay = 0;
 
 		urls.forEach(function (url) {
-			if (sameDomain(url)) {
-				download(url);	
-			} else {
-				// the download init has to be sequential for firefox if the urls are not on the same domain
+			// the download init has to be sequential for firefox if the urls are not on the same domain
+			if (isFirefox() && !sameDomain(url)) {
 				setTimeout(download.bind(null, url), 100 * (++delay));
+			} else {
+				download(url);
 			}
 		});
 	};
