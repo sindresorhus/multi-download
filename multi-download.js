@@ -27,6 +27,26 @@
 			}, 100);
 		})();
 	}
+	
+	function isFirefox() {
+		// sad panda :(
+		return /Firefox\//i.test(navigator.userAgent);
+	}
+	
+	function sameDomain(url) {
+		var a = document.createElement('a');
+		a.href = url;
+		
+		return location.hostname === a.hostname && location.protocol === a.protocol;
+	}
+	
+	function download(url) {
+		var a = document.createElement('a');
+		a.download = '';
+		a.href = url;
+		// firefox doesn't support `a.click()`...
+		a.dispatchEvent(new MouseEvent('click'));
+	}
 
 	function multiDownload(urls) {
 		if (!urls) {
@@ -36,13 +56,16 @@
 		if (typeof document.createElement('a').download === 'undefined') {
 			return fallback(urls);
 		}
+		
+		var delay = 0;
 
 		urls.forEach(function (url) {
-			var a = document.createElement('a');
-			a.download = '';
-			a.href = url;
-			// firefox doesn't support `a.click()`...
-			a.dispatchEvent(new MouseEvent('click'));
+			// the download init has to be sequential for firefox if the urls are not on the same domain
+			if (isFirefox() && !sameDomain(url)) {
+				return setTimeout(download.bind(null, url), 100 * (++delay));
+			}
+			
+			download(url);
 		});
 	};
 
