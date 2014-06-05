@@ -27,19 +27,19 @@
 			}, 100);
 		})();
 	}
-	
+
 	function isFirefox() {
 		// sad panda :(
 		return /Firefox\//i.test(navigator.userAgent);
 	}
-	
+
 	function sameDomain(url) {
 		var a = document.createElement('a');
 		a.href = url;
-		
+
 		return location.hostname === a.hostname && location.protocol === a.protocol;
 	}
-	
+
 	function download(url) {
 		var a = document.createElement('a');
 		a.download = '';
@@ -56,18 +56,18 @@
 		if (typeof document.createElement('a').download === 'undefined') {
 			return fallback(urls);
 		}
-		
+
 		var delay = 0;
 
 		urls.forEach(function (url) {
 			// the download init has to be sequential for firefox if the urls are not on the same domain
 			if (isFirefox() && !sameDomain(url)) {
-				return setTimeout(download.bind(null, url), 100 * (++delay));
+				return setTimeout(download.bind(null, url), 100 * ++delay);
 			}
-			
+
 			download(url);
 		});
-	};
+	}
 
 	if (typeof module !== 'undefined' && module.exports) {
 		module.exports = multiDownload;
