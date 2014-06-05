@@ -37,11 +37,11 @@
 		var a = document.createElement('a');
 		a.href = url;
 		
-		if ( location.hostname !== a.hostname || location.protocol !== a.protocol ) {
-			return false;
+		if (location.hostname === a.hostname && location.protocol === a.protocol) {
+			return true;
 		}
 		
-		return true;
+		return false;
 	}
 	
 	function download(url) {
