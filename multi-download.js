@@ -34,15 +34,14 @@
 	}
 	
 	function sameDomain(url) {
-	  	// detect (protocol:)//
-		if (! /^([a-z]+:)?\/\//i.test(url)) {
-	  		return true;
-	  	}
-	  	
-	  	var host = location.protocol + '//' + location.hostname;
-	  	
-	  	// detect the same domain AND protocol
-	  	return (! url.replace(/^\/\//, location.protocol + '//').indexOf(host));
+		var a = document.createElement('a');
+		a.href = url;
+		
+		if ( location.hostname !== a.hostname || location.protocol !== a.protocol ) {
+			return false;
+		}
+		
+		return true;
 	}
 	
 	function download(url) {
@@ -67,10 +66,10 @@
 		urls.forEach(function (url) {
 			// the download init has to be sequential for firefox if the urls are not on the same domain
 			if (isFirefox() && !sameDomain(url)) {
-				setTimeout(download.bind(null, url), 100 * (++delay));
-			} else {
-				download(url);
+				return setTimeout(download.bind(null, url), 100 * (++delay));
 			}
+			
+			download(url);
 		});
 	};
 
