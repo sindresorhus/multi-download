@@ -20,10 +20,6 @@ $ npm install --save multi-download
 $ bower install --save multi-download
 ```
 
-```sh
-$ component install sindresorhus/multi-download
-```
-
 
 ## Usage
 

@@ -4,12 +4,12 @@
   "description": "Download multiple files at once",
   "license": "MIT",
   "repository": "sindresorhus/multi-download",
-  "main": "multi-download.js",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "http://sindresorhus.com"
   },
+  "main": "multi-download.js",
   "files": [
     "multi-download.js"
   ],
