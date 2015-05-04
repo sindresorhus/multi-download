@@ -72,6 +72,6 @@
 	if (typeof module !== 'undefined' && module.exports) {
 		module.exports = multiDownload;
 	} else {
-		window.multiDownload = multiDownload;
+		self.multiDownload = multiDownload;
 	}
 })();
