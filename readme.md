@@ -12,12 +12,8 @@ It works by abusing the `a`-tag [`download` attribute](https://developer.mozilla
 
 ## Install
 
-```sh
-$ npm install --save multi-download
 ```
-
-```sh
-$ bower install --save multi-download
+$ npm install --save multi-download
 ```
 
 
@@ -51,7 +47,7 @@ $('#download-btn').on('click', function () {
 
 Type: `array`
 
-Urls you want to download.
+URLs to files you want to download.
 
 
 ## Caveats

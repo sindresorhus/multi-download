@@ -20,7 +20,7 @@
 	</head>
 	<body >
 		<button id="download-btn" class="btn btn-primary btn-lg" data-files="fixture/unicorn.jpg.zip fixture/rainbow.jpg.zip fixture/unicorn2.jpg.zip">Download multiple files</button>
-		<script src="multi-download.js"></script>
+		<script src="browser.js"></script>
 		<script>
 			document.querySelector('#download-btn').addEventListener('click', function (e) {
 				var files = e.target.dataset.files.split(' ');
