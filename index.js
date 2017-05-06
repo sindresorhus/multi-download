@@ -11,7 +11,8 @@ function fallback(urls) {
 
 		// the download init has to be sequential otherwise IE only use the first
 		var interval = setInterval(function () {
-			if (frame.contentWindow.document.readyState === 'complete') {
+			if (frame.contentWindow.document.readyState === 'complete'
+			|| frame.contentWindow.document.readyState === 'interactive') {
 				clearInterval(interval);
 
 				// Safari needs a timeout
