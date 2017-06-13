@@ -41,17 +41,20 @@ function sameDomain(url) {
 	return location.hostname === a.hostname && location.protocol === a.protocol;
 }
 
-function download(url) {
+function download(url, name) {
 	var a = document.createElement('a');
-	a.download = '';
+	a.download = name || '';
 	a.href = url;
 	// firefox doesn't support `a.click()`...
 	a.dispatchEvent(new MouseEvent('click'));
 }
 
-module.exports = function (urls) {
+module.exports = function (urls, renameFn) {
 	if (!urls) {
 		throw new Error('`urls` required');
+	}
+	if (!renameFn) {
+		renameFn = function () { return ''; };
 	}
 
 	if (typeof document.createElement('a').download === 'undefined') {
@@ -60,15 +63,20 @@ module.exports = function (urls) {
 
 	var delay = 0;
 
-	urls.forEach(function (url) {
+	urls.map(function (url, index, urls) {
+		return {
+			url: url,
+			name: renameFn(url, index, urls)
+		};
+	}).forEach(function (obj) {
 		// the download init has to be sequential for firefox if the urls are not on the same domain
-		if (isFirefox() && !sameDomain(url)) {
-			return setTimeout(download.bind(null, url), 100 * ++delay);
+		if (isFirefox() && !sameDomain(obj.url)) {
+			return setTimeout(download.bind(null, obj.url, obj.name), 100 * ++delay);
 		}
 
-		download(url);
+		download(obj.url, obj.name);
 	});
-}
+};
 
 },{}]},{},[1])(1)
 });
