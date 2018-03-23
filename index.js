@@ -12,7 +12,7 @@ function fallback(urls) {
 		// the download init has to be sequential otherwise IE only use the first
 		var interval = setInterval(function () {
 			if (frame.contentWindow.document.readyState === 'complete'
-			|| frame.contentWindow.document.readyState === 'interactive') {
+				|| frame.contentWindow.document.readyState === 'interactive') {
 				clearInterval(interval);
 
 				// Safari needs a timeout
@@ -26,18 +26,6 @@ function fallback(urls) {
 			}
 		}, 100);
 	})();
-}
-
-function isFirefox() {
-	// sad panda :(
-	return /Firefox\//i.test(navigator.userAgent);
-}
-
-function sameDomain(url) {
-	var a = document.createElement('a');
-	a.href = url;
-
-	return location.hostname === a.hostname && location.protocol === a.protocol;
 }
 
 function download(url) {
@@ -60,11 +48,8 @@ module.exports = function (urls) {
 	var delay = 0;
 
 	urls.forEach(function (url) {
-		// the download init has to be sequential for firefox if the urls are not on the same domain
-		if (isFirefox() && !sameDomain(url)) {
-			return setTimeout(download.bind(null, url), 100 * ++delay);
-		}
-
-		download(url);
+		setTimeout(function () {
+			download(url);
+		}, 100* ++delay);
 	});
 }
