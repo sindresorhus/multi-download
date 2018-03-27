@@ -1,6 +1,6 @@
 {
   "name": "multi-download",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "description": "Download multiple files at once",
   "license": "MIT",
   "repository": "sindresorhus/multi-download",
