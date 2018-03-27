@@ -28,28 +28,10 @@ function fallback(urls) {
 	})();
 }
 
-function download(url) {
-	var a = document.createElement('a');
-	a.download = '';
-	a.href = url;
-	// firefox doesn't support `a.click()`...
-	a.dispatchEvent(new MouseEvent('click'));
-}
-
 module.exports = function (urls) {
 	if (!urls) {
 		throw new Error('`urls` required');
 	}
 
-	if (typeof document.createElement('a').download === 'undefined') {
-		return fallback(urls);
-	}
-
-	var delay = 0;
-
-	urls.forEach(function (url) {
-		setTimeout(function () {
-			download(url);
-		}, 100* ++delay);
-	});
+	return fallback(urls);
 }
