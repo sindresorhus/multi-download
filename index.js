@@ -33,6 +33,11 @@ function isFirefox() {
 	return /Firefox\//i.test(navigator.userAgent);
 }
 
+function isChrome65() {
+    // sadder panda :(
+    return /Chrome\/65/i.test(navigator.userAgent);
+}
+
 function sameDomain(url) {
 	var a = document.createElement('a');
 	a.href = url;
@@ -53,7 +58,7 @@ module.exports = function (urls) {
 		throw new Error('`urls` required');
 	}
 
-	if (typeof document.createElement('a').download === 'undefined') {
+	if (typeof document.createElement('a').download === 'undefined' || isChrome65()) {
 		return fallback(urls);
 	}
 
