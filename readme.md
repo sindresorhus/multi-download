@@ -4,7 +4,7 @@
 
 ![](screenshot.gif)
 
-It works by abusing the `a`-tag [`download` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-download) and falling back to iframes on older browsers.
+It works by abusing the `a`-tag [`download` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-download).
 
 
 ## [Demo](http://sindresorhus.com/multi-download)
@@ -16,17 +16,17 @@ It works by abusing the `a`-tag [`download` attribute](https://developer.mozilla
 $ npm install multi-download
 ```
 
-*Note: This package targets the latest versions of Chrome, Firefox, and Safari. It's up to you to transpile the code if you want to support older browsers.*
+*Note: This package targets the latest versions of Chrome, Firefox, and Safari.*
 
 
 ## Usage
 
 ```html
-<button id="download-btn" data-files="unicorn.jpg rainbow.jpg">Download</button>
+<button id="download-button" data-files="unicorn.jpg rainbow.jpg">Download</button>
 ```
 
 ```js
-document.querySelector('#download-btn').addEventListener('click', event => {
+document.querySelector('#download-button').addEventListener('click', event => {
 	const files = event.target.dataset.files.split(' ');
 	multiDownload(files);
 });
@@ -34,37 +34,26 @@ document.querySelector('#download-btn').addEventListener('click', event => {
 
 ```js
 // With jQuery
-$('#download-btn').on('click', () => {
+$('#download-button').on('click', () => {
 	const files = $(this).data('files').split(' ');
 	multiDownload(files);
 });
 ```
-
-### Rename
-
-```html
-<button id="download-rename-btn" data-files="unicorn.jpg rainbow.jpg">Download</button>
-```
-
-```js
-document.querySelector('#download-rename-btn').addEventListener('click', event => {
-	const files = e.target.dataset.files.split(' ');
-	multiDownload(files, ({url, index, urls}) => 'New name.pdf');
-});
-```
-
-Note: Rename doesn't work when using the fallback.
 
 
 ## API
 
 ### multiDownload(urls, options?)
 
+Returns a `Promise` that resolves when all the downloads have started.
+
+Note that there's a delay of 1 second between each download.
+
 #### urls
 
 Type: `string[]`
 
-URLs to files you want to download.
+URLs to files you want to download. Can be absolute or relative, even cross-origin.
 
 #### options
 
@@ -76,11 +65,18 @@ Type: `Function`
 
 A function tht accepts an object containing `url`, `index`, and `urls` properties and is expected to return the new filename.
 
+```html
+<button id="download-button" data-files="unicorn.jpg rainbow.jpg">Download</button>
+```
+
+```js
+document.querySelector('#download-button').addEventListener('click', event => {
+	const files = event.target.dataset.files.split(' ');
+	multiDownload(files, ({url, index, urls}) => 'New name.pdf');
+});
+```
+
 
 ## Caveats
 
-Chrome will ask the user before downloading multiple files (once per domain).
-
 If the user has enabled "Ask where to save each file before downloading" in Chrome, it will only download the first file.
-
-For the fallback to work, you need to make sure the server sends the correct header for the browser to download the file rather than displaying it. This is usually achieved with the header `Content-Disposition: attachment; filename="<file name.ext>" `.
