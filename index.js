@@ -33,6 +33,10 @@ function isFirefox() {
 	return /Firefox\//i.test(navigator.userAgent);
 }
 
+function isSafari() {
+	return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}
+
 function sameDomain(url) {
 	var a = document.createElement('a');
 	a.href = url;
@@ -69,7 +73,7 @@ module.exports = function (urlsOrOpts) {
 		var name = typeof renameFn === 'function' ? renameFn({ url, index, urls }) : '';
 
 		// the download init has to be sequential for firefox if the urls are not on the same domain
-		if (isFirefox() && !sameDomain(url)) {
+		if ((isFirefox() && !sameDomain(url)) || isSafari()) {
 			return setTimeout(download.bind(null, url, name), 100 * ++delay);
 		}
 
