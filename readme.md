@@ -81,4 +81,6 @@ A function tht accepts an object containing `url`, `index`, and `urls` propertie
 
 Chrome will ask the user before downloading multiple files (once per domain).
 
+If the user has enabled "Ask where to save each file before downloading" in Chrome, it will only download the first file.
+
 For the fallback to work, you need to make sure the server sends the correct header for the browser to download the file rather than displaying it. This is usually achieved with the header `Content-Disposition: attachment; filename="<file name.ext>" `.
