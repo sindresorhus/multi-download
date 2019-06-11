@@ -1,6 +1,6 @@
 # multi-download
 
-> Download multiple files at once
+> Download multiple files at once in the browser
 
 ![](screenshot.gif)
 
@@ -13,8 +13,10 @@ It works by abusing the `a`-tag [`download` attribute](https://developer.mozilla
 ## Install
 
 ```
-$ npm install --save multi-download
+$ npm install multi-download
 ```
+
+*Note: This package targets the latest versions of Chrome, Firefox, and Safari. It's up to you to transpile the code if you want to support older browsers.*
 
 
 ## Usage
@@ -24,62 +26,59 @@ $ npm install --save multi-download
 ```
 
 ```js
-document.querySelector('#download-btn').addEventListener('click', function (e) {
-	var files = e.target.dataset.files.split(' ');
+document.querySelector('#download-btn').addEventListener('click', event => {
+	const files = event.target.dataset.files.split(' ');
 	multiDownload(files);
 });
 ```
 
 ```js
-// with jQuery
-$('#download-btn').on('click', function () {
-	var files = $(this).data('files').split(' ');
+// With jQuery
+$('#download-btn').on('click', () => {
+	const files = $(this).data('files').split(' ');
 	multiDownload(files);
 });
 ```
 
-## Usage (rename)
+### Rename
 
 ```html
 <button id="download-rename-btn" data-files="unicorn.jpg rainbow.jpg">Download</button>
 ```
 
 ```js
-document.querySelector('#download-rename-btn').addEventListener('click', function (e) {
-	var files = e.target.dataset.files.split(' ');
-	multiDownload(files, function ({ url, index, urls}) {
-		return 'new name.pdf'
-	});
+document.querySelector('#download-rename-btn').addEventListener('click', event => {
+	const files = e.target.dataset.files.split(' ');
+	multiDownload(files, ({url, index, urls}) => 'New name.pdf');
 });
 ```
 
-Rename doesn't work when using the fallback
+Note: Rename doesn't work when using the fallback.
+
 
 ## API
 
-### multiDownload(urls)
-### multiDownload({ urls, renameFn })
+### multiDownload(urls, options?)
 
 #### urls
 
-Type: `array`
+Type: `string[]`
 
 URLs to files you want to download.
 
-#### renameFn
+#### options
 
-Type: `function`
+Type: `object`
 
-Function which accepts an object containing `url`, `index` and `urls` and
-returns the `filename` it should be downloaded with
+##### rename
+
+Type: `Function`
+
+A function tht accepts an object containing `url`, `index`, and `urls` properties and is expected to return the new filename.
+
 
 ## Caveats
 
 Chrome will ask the user before downloading multiple files (once per domain).
 
-For the fallback to work you need to make sure the server sends the correct header for the browser to download the file rather than displaying it. This is usually achieved with the header `Content-Disposition: attachment; filename="<file name.ext>" `.
-
-
-## License
-
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+For the fallback to work, you need to make sure the server sends the correct header for the browser to download the file rather than displaying it. This is usually achieved with the header `Content-Disposition: attachment; filename="<file name.ext>" `.
