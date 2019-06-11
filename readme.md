@@ -38,10 +38,27 @@ $('#download-btn').on('click', function () {
 });
 ```
 
+## Usage (rename)
+
+```html
+<button id="download-rename-btn" data-files="unicorn.jpg rainbow.jpg">Download</button>
+```
+
+```js
+document.querySelector('#download-rename-btn').addEventListener('click', function (e) {
+	var files = e.target.dataset.files.split(' ');
+	multiDownload(files, function ({ url, index, urls}) {
+		return 'new name.pdf'
+	});
+});
+```
+
+Rename doesn't work when using the fallback
 
 ## API
 
 ### multiDownload(urls)
+### multiDownload({ urls, renameFn })
 
 #### urls
 
@@ -49,6 +66,12 @@ Type: `array`
 
 URLs to files you want to download.
 
+#### renameFn
+
+Type: `function`
+
+Function which accepts an object containing `url`, `index` and `urls` and
+returns the `filename` it should be downloaded with
 
 ## Caveats
 

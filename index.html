@@ -7,24 +7,37 @@
 		<title>multi-download</title>
 		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 		<style>
-			#download-btn {
-				width: 300px;
+			#download-btn, #download-rename-btn {
 				height: 50px;
 				position: absolute;
 				left: 50%;
-				top: 50%;
-				margin: -25px 0 0 -150px;
+				transform: translate(-50%, -50%);
 				outline: none;
+			}
+			#download-btn {
+				top: calc(50% - 30px);
+			}
+			#download-rename-btn {
+				top: calc(50% + 30px);
 			}
 		</style>
 	</head>
 	<body >
 		<button id="download-btn" class="btn btn-primary btn-lg" data-files="fixture/unicorn.jpg.zip fixture/rainbow.jpg.zip fixture/unicorn2.jpg.zip">Download multiple files</button>
+		<button id="download-rename-btn" class="btn btn-primary btn-lg" data-files="fixture/unicorn.jpg.zip fixture/rainbow.jpg.zip fixture/unicorn2.jpg.zip">Download multiple files and rename them</button>
 		<script src="browser.js"></script>
 		<script>
 			document.querySelector('#download-btn').addEventListener('click', function (e) {
 				var files = e.target.dataset.files.split(' ');
 				multiDownload(files);
+			});
+
+			document.querySelector('#download-rename-btn').addEventListener('click', function (e) {
+				var files = e.target.dataset.files.split(' ');
+				multiDownload({ urls: files, renameFn: function ({url, index, urls}) {
+					var extension = url.substring(url.lastIndexOf('.') + 1);
+					return 'file' + index + '.' + extension;
+				}});
 			});
 		</script>
 	</body>
