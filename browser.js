@@ -41,15 +41,21 @@ function sameDomain(url) {
 	return location.hostname === a.hostname && location.protocol === a.protocol;
 }
 
-function download(url) {
+function download(url, name) {
 	var a = document.createElement('a');
-	a.download = '';
+	a.download = name;
 	a.href = url;
 	// firefox doesn't support `a.click()`...
 	a.dispatchEvent(new MouseEvent('click'));
 }
 
-module.exports = function (urls) {
+module.exports = function (urlsOrOpts) {
+	if (urlsOrOpts.constructor === Array) {
+		urlsOrOpts = { urls: urlsOrOpts };
+	}
+
+  const { urls, renameFn } = urlsOrOpts;
+
 	if (!urls) {
 		throw new Error('`urls` required');
 	}
@@ -60,13 +66,15 @@ module.exports = function (urls) {
 
 	var delay = 0;
 
-	urls.forEach(function (url) {
+	urls.forEach(function (url, index) {
+		var name = typeof renameFn === 'function' ? renameFn({ url, index, urls }) : '';
+
 		// the download init has to be sequential for firefox if the urls are not on the same domain
 		if (isFirefox() && !sameDomain(url)) {
-			return setTimeout(download.bind(null, url), 100 * ++delay);
+			return setTimeout(download.bind(null, url, name), 100 * ++delay);
 		}
 
-		download(url);
+		download(url, name);
 	});
 }
 
