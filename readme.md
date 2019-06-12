@@ -42,10 +42,11 @@ $('#download-button').on('click', () => {
 
 ```js
 // With Blob
-const blob = URL.createObjectURL(new Blob(['Hello world'], {type: 'text/plain'}));
-const anotherBlob = URL.createObjectURL(new Blob(['Hello Sindresorhus'], {type: 'text/plain'}));
-multiDownload([blob, anotherBlob]);
+const unicorn = URL.createObjectURL(new Blob(['🦄'], {type: 'text/plain'}));
+const goat = URL.createObjectURL(new Blob(['🐐'], {type: 'text/plain'}));
+multiDownload([unicorn, goat]);
 ```
+
 
 ## API
 
