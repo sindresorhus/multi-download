@@ -40,6 +40,11 @@ $('#download-button').on('click', () => {
 });
 ```
 
+```js
+// With Blob
+const blob = window.URL.createObjectURL(new Blob(['hello world.'], {type: 'text/plain'}));
+multiDownload([blob]);
+```
 
 ## API
 
