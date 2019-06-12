@@ -73,8 +73,8 @@ A function tht accepts an object containing `url`, `index`, and `urls` propertie
 document.querySelector('#download-button').addEventListener('click', event => {
 	const files = event.target.dataset.files.split(' ');
 	multiDownload(files, {
-		rename: ({url, index, urls}) => 'New name.pdf');
-	}
+		rename: ({url, index, urls}) => 'New name.pdf'
+	});
 });
 ```
 
