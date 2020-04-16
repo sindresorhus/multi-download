@@ -6,9 +6,7 @@
 
 It works by abusing the `a`-tag [`download` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-download).
 
-
-## [Demo](http://sindresorhus.com/multi-download)
-
+## [Demo](https://sindresorhus.com/multi-download/)
 
 ## Install
 
@@ -17,7 +15,6 @@ $ npm install multi-download
 ```
 
 *Note: This package targets the latest versions of Chrome, Firefox, and Safari.*
-
 
 ## Usage
 
@@ -46,7 +43,6 @@ const unicorn = URL.createObjectURL(new Blob(['🦄'], {type: 'text/plain'}));
 const goat = URL.createObjectURL(new Blob(['🐐'], {type: 'text/plain'}));
 multiDownload([unicorn, goat]);
 ```
-
 
 ## API
 
@@ -84,7 +80,6 @@ document.querySelector('#download-button').addEventListener('click', event => {
 	});
 });
 ```
-
 
 ## Caveats
 
