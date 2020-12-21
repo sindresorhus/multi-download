@@ -23,6 +23,8 @@ $ npm install multi-download
 ```
 
 ```js
+const multiDownload = require('multi-download');
+
 document.querySelector('#download-button').addEventListener('click', event => {
 	const files = event.target.dataset.files.split(' ');
 	multiDownload(files);
@@ -30,6 +32,8 @@ document.querySelector('#download-button').addEventListener('click', event => {
 ```
 
 ```js
+const multiDownload = require('multi-download');
+
 // With jQuery
 $('#download-button').on('click', () => {
 	const files = $(this).data('files').split(' ');
@@ -38,6 +42,8 @@ $('#download-button').on('click', () => {
 ```
 
 ```js
+const multiDownload = require('multi-download');
+
 // With Blob
 const unicorn = URL.createObjectURL(new Blob(['🦄'], {type: 'text/plain'}));
 const goat = URL.createObjectURL(new Blob(['🐐'], {type: 'text/plain'}));
@@ -73,6 +79,8 @@ A function tht accepts an object containing `url`, `index`, and `urls` propertie
 ```
 
 ```js
+const multiDownload = require('multi-download');
+
 document.querySelector('#download-button').addEventListener('click', event => {
 	const files = event.target.dataset.files.split(' ');
 	multiDownload(files, {
