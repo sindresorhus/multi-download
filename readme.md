@@ -10,8 +10,8 @@ It works by abusing the `a`-tag [`download` attribute](https://developer.mozilla
 
 ## Install
 
-```
-$ npm install multi-download
+```sh
+npm install multi-download
 ```
 
 *Note: This package targets the latest versions of Chrome, Firefox, and Safari.*
@@ -23,7 +23,7 @@ $ npm install multi-download
 ```
 
 ```js
-const multiDownload = require('multi-download');
+import multiDownload from 'multi-download';
 
 document.querySelector('#download-button').addEventListener('click', event => {
 	const files = event.target.dataset.files.split(' ');
@@ -32,7 +32,7 @@ document.querySelector('#download-button').addEventListener('click', event => {
 ```
 
 ```js
-const multiDownload = require('multi-download');
+import multiDownload from 'multi-download';
 
 // With jQuery
 $('#download-button').on('click', () => {
@@ -42,7 +42,7 @@ $('#download-button').on('click', () => {
 ```
 
 ```js
-const multiDownload = require('multi-download');
+import multiDownload from 'multi-download';
 
 // With Blob
 const unicorn = URL.createObjectURL(new Blob(['🦄'], {type: 'text/plain'}));
@@ -62,7 +62,7 @@ Note that there's a delay of 1 second between each download.
 
 Type: `string[]`
 
-URLs to files you want to download. Can be absolute or relative, even cross-origin.
+The URLs to files you want to download. Can be absolute or relative, even cross-origin.
 
 #### options
 
@@ -79,7 +79,7 @@ A function tht accepts an object containing `url`, `index`, and `urls` propertie
 ```
 
 ```js
-const multiDownload = require('multi-download');
+import multiDownload from 'multi-download';
 
 document.querySelector('#download-button').addEventListener('click', event => {
 	const files = event.target.dataset.files.split(' ');

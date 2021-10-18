@@ -9,9 +9,8 @@
 		"email": "sindresorhus@gmail.com",
 		"url": "sindresorhus.com"
 	},
-	"scripts": {
-		"build": "a=$npm_package_name; browserify --require=.:$a --standalone=$a --outfile=browser.js index.js"
-	},
+	"type": "module",
+	"exports": "./index.js",
 	"files": [
 		"index.js"
 	],
@@ -21,8 +20,5 @@
 		"multiple",
 		"parallel",
 		"files"
-	],
-	"devDependencies": {
-		"browserify": "^16.2.3"
-	}
+	]
 }

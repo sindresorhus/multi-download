@@ -1,6 +1,6 @@
-'use strict';
-
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+const delay = milliseconds => new Promise(resolve => {
+	setTimeout(resolve, milliseconds);
+});
 
 const download = async (url, name) => {
 	const a = document.createElement('a');
@@ -15,15 +15,15 @@ const download = async (url, name) => {
 	a.remove();
 };
 
-module.exports = async (urls, options = {}) => {
+export default async function multiDownload(urls, {rename} = {}) {
 	if (!urls) {
 		throw new Error('`urls` required');
 	}
 
 	for (const [index, url] of urls.entries()) {
-		const name = typeof options.rename === 'function' ? options.rename({url, index, urls}) : '';
+		const name = typeof rename === 'function' ? rename({url, index, urls}) : '';
 
 		await delay(index * 1000);
 		download(url, name);
 	}
-};
+}
