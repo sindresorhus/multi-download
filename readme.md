@@ -72,7 +72,7 @@ Type: `object`
 
 Type: `Function`
 
-A function tht accepts an object containing `url`, `index`, and `urls` properties and is expected to return the new filename.
+A function that accepts an object containing `url`, `index`, and `urls` properties and is expected to return the new filename.
 
 ```html
 <button id="download-button" data-files="unicorn.jpg rainbow.jpg">Download</button>
