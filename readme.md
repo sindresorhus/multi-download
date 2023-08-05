@@ -74,6 +74,12 @@ Type: `Function`
 
 A function that accepts an object containing `url`, `index`, and `urls` properties and is expected to return the new filename.
 
+##### delayTime
+
+Type: `number`
+
+Time in miliseconds to delay between each download
+
 ```html
 <button id="download-button" data-files="unicorn.jpg rainbow.jpg">Download</button>
 ```
@@ -84,7 +90,8 @@ import multiDownload from 'multi-download';
 document.querySelector('#download-button').addEventListener('click', event => {
 	const files = event.target.dataset.files.split(' ');
 	multiDownload(files, {
-		rename: ({url, index, urls}) => 'New name.pdf'
+		rename: ({url, index, urls}) => 'New name.pdf',
+		delayTime: 500
 	});
 });
 ```
