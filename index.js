@@ -23,7 +23,7 @@ export default async function multiDownload(urls, {rename} = {}) {
 	for (const [index, url] of urls.entries()) {
 		const name = typeof rename === 'function' ? rename({url, index, urls}) : '';
 
-		await delay(index * 1000);
+		await delay(index * 1000); // eslint-disable-line no-await-in-loop
 		download(url, name);
 	}
 }
