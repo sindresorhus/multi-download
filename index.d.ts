@@ -1,14 +1,12 @@
-/**
-  Function to rename downloaded files.
- */
-/**
-	 * This function is used to determine the filename for each downloaded file.
-	 * @param options - The options for renaming.
-	 * @returns The new filename for the downloaded file.
-	 */
-export type RenameFunction = (options: {url: string; index: number; urls: string[]}) => string;
 
 /**
+  This function is used to determine the filename for each downloaded file.
+  @param options - The options for renaming.
+  @returns The new filename for the downloaded file.
+*/
+export type RenameFunction = (options: {url: string; index: number; urls: string[]}) => string;
+
+/*
   Options for the multiDownload function.
  */
 export type MultiDownloadOptions = {
@@ -17,7 +15,6 @@ export type MultiDownloadOptions = {
 	  @default undefined (use original filenames)
 	 */
 	rename?: RenameFunction;
-
 	/**
 	  The delay time between each file download in milliseconds.
 	  @default 1000
