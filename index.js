@@ -27,7 +27,7 @@ export default async function multiDownload(urls = [], options = {}) {
 		throw new Error('`urls` required');
 	}
 
-	if (urls.every(url => typeof url !== 'string')) {
+	if (urls.some(url => typeof url !== 'string')) {
 		throw new Error('`urls` must be an array of strings');
 	}
 
