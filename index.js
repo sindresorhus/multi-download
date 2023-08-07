@@ -1,12 +1,13 @@
-const delay = milliseconds => new Promise(resolve => {
-	setTimeout(resolve, milliseconds);
-});
+const delay = (milliseconds) =>
+	new Promise((resolve) => {
+		setTimeout(resolve, milliseconds);
+	});
 
 const download = async (url, name) => {
-	const a = document.createElement('a');
+	const a = document.createElement("a");
 	a.download = name;
 	a.href = url;
-	a.style.display = 'none';
+	a.style.display = "none";
 	document.body.append(a);
 	a.click();
 
@@ -21,15 +22,15 @@ const getName = ({ url }) => {
 };
 
 export default async function multiDownload(urls = [], options = {}) {
-	const { delay = 1000, rename = getName } = options;
+	const { downloadInterval = 1000, rename = getName } = options;
 	if (!urls?.length) {
 		throw new Error("`urls` required");
 	}
 	if (urls.every((url) => typeof url !== "string")) {
 		throw new Error("`urls` must be an array of strings");
 	}
-	if (typeof delay !== "number") {
-		throw new Error("`delay` must be a number");
+	if (typeof downloadInterval !== "number") {
+		throw new Error("`downloadInterval` must be a number");
 	}
 	if (typeof rename !== "function") {
 		throw new Error("`rename` must be a function");
@@ -38,7 +39,7 @@ export default async function multiDownload(urls = [], options = {}) {
 	for (const [index, url] of urls.entries()) {
 		const name = rename({ url, index, urls });
 
-		await delay(index * delay);
+		await delay(index * downloadInterval); // eslint-disable-line no-await-in-loop
 		download(url, name);
 	}
 }

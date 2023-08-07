@@ -1,6 +1,6 @@
 {
 	"name": "multi-download",
-	"version": "5.0.0",
+	"version": "4.1.0",
 	"description": "Download multiple files at once in the browser",
 	"license": "MIT",
 	"repository": "sindresorhus/multi-download",
@@ -16,7 +16,8 @@
 		"test": "xo"
 	},
 	"files": [
-		"index.js"
+		"index.js",
+		"index.d.ts"
 	],
 	"typings": "index.d.ts",
 	"keywords": [
