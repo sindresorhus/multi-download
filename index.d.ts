@@ -1,6 +1,6 @@
 /**
   @param options   -  The options for renaming.
-  
+
   @returns         -  The new filename for the downloaded file.
 
   @description     -  This function is used to determine the filename for each downloaded file.
@@ -17,7 +17,7 @@ export type RenameFunction = (options: {
 export type Options = {
 	/**
 	  @default undefined  - (use original filenames)
-    
+
 	  @description        - A function that returns the new filename for each downloaded file.
     */
 	rename?: RenameFunction;
@@ -42,7 +42,7 @@ export type Options = {
   import { multiDownload } from "multi-download";
 
   async function downloadFiles() {
-    
+
   	const urls = [
   		"https://example.com/file1.txt",
   		"https://example.com/file2.txt",
