@@ -74,6 +74,9 @@ Type: `Function`
 
 A function that accepts an object containing `url`, `index`, and `urls` properties and is expected to return the new filename.
 
+> [!NOTE]
+> Only works for same-origin URLs or blob/data URLs due to browser security restrictions. Cross-origin URLs will download with their original names.
+
 ```html
 <button id="download-button" data-files="unicorn.jpg rainbow.jpg">Download</button>
 ```

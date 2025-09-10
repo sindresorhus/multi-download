@@ -12,11 +12,13 @@
 	},
 	"type": "module",
 	"exports": "./index.js",
+	"sideEffects": false,
 	"scripts": {
 		"test": "xo"
 	},
 	"files": [
-		"index.js"
+		"index.js",
+		"index.d.ts"
 	],
 	"keywords": [
 		"browser",
